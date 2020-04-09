@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+<%-
+  # Configure R
+  r_script = session.staged_root.join("launcher.R")
+-%>
+
+#
+# Create Shiny App launcher script
+#
+
+echo "Creating Shiny App launcher..."
+(
+umask 077
+sed 's/^ \{2\}//' > "<%= r_script %>" << EOT
+  options(shiny.port = as.numeric(Sys.getenv("port")))
+  options(shiny.host = '0.0.0.0')
+  shiny::runApp("<%= context.app_directory %>")
+EOT
+)
+
+module purge
+module load ondemand xalt/latest
+module load gnu/9.1.0 mkl/2019.0.3 R/3.6.1
+
+# Output debug info
+module list
+
+# Launch Shiny App
+R --no-save --slave -f "<%= r_script %>"

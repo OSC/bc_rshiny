@@ -1,0 +1,20 @@
+cluster: 'quick'
+form:
+  - bc_num_slots
+  - app_directory
+  - bc_account
+  - node_type
+attributes:
+  bc_num_slots:
+    value: 1
+  node_type: ":ppn=1:owens"
+  app_directory:
+    data-filepicker: true
+    data-target-file-type: 'dirs'
+    help: |
+      "The directory where the RShiny app is"
+  bc_account:
+    label: "Project"
+    help: "You can leave this blank if **not** in multiple projects."
+    
+
