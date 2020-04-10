@@ -5,8 +5,7 @@ form:
   - bc_account
   - node_type
 attributes:
-  bc_num_slots:
-    value: 1
+  bc_num_slots: 1
   node_type: ":ppn=1:owens"
   app_directory:
     data-filepicker: true
