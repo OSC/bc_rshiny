@@ -1,10 +1,26 @@
 ---
-name: RShiny Batch Connect
-category: servers
+name: R Shiny Batch Connect
+category: A COVID Hyder
 role: batch_connect
 description: |
   This app will launch a [Shiny App] using a **shared node** on the [Owens
-  cluster].
+  cluster] and loads the module:
+
+      module load gnu/9.1.0 mkl/2019.0.3 R/3.6.1
+
+  And assumes the starting point of the app is `app.R`.
+
+  Before using this app, on an Owens login node run these commands after loading module above:
+
+      # start R interpreter
+      R
+
+      # takes 10 minutes: install dependencies ('R6' minimally needed for launching any app)
+      install.packages(c('R6','mime','lazyeval','gtable','tidyverse','plotly','DT', 'shinydashboard'))
+      # takes 5 minutes if you choose 3 to update None: dev dependencies
+      devtools::install_github('cttobin/ggthemr')
+
+  See [example Shiny Apps on GitHub](https://github.com/rstudio/shiny-examples)
 
   [Shiny App]: https://shiny.rstudio.com/
   [Owens cluster]: https://www.osc.edu/resources/technical_support/supercomputers/owens
